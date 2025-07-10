@@ -1,31 +1,38 @@
 'use client';
 
-import { Box, Button, Typography } from '@mui/material';
-import Link from 'next/link';
+import { Container, Paper, Typography, Button, Stack } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
-export default function Page() {
+export default function HomePage() {
+  const router = useRouter();
+
   return (
-    <Box
-      sx={{
-        height: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        gap: 2,
-      }}
-    >
-      <Typography variant="h4" color="primary" align="center">
-        Welcome to MUI Music
-      </Typography>
-      <Button
-        component={Link}
-        href="/home"
-        variant="contained"
-        color="primary"
+    <Container maxWidth="sm" sx={{ height: '100vh', display: 'flex', alignItems: 'center' }}>
+      <Paper
+        elevation={4}
+        sx={{
+          p: 4,
+          borderRadius: 4,
+          bgcolor: '#fffde7',
+          width: '100%',
+          textAlign: 'center',
+        }}
       >
-        Go to Home
-      </Button>
-    </Box>
+        <Typography variant="h4" gutterBottom color="primary">
+          Welcome to MUI Music
+        </Typography>
+        <Typography variant="body1" color="text.secondary" mb={3}>
+          Start your music journey now.
+        </Typography>
+        <Stack spacing={2} direction="row" justifyContent="center">
+          <Button variant="contained" onClick={() => router.push('/home')}>
+            Home
+          </Button>
+          <Button variant="outlined" color="error" onClick={() => router.push('/notmember')}>
+            Not a Member
+          </Button>
+        </Stack>
+      </Paper>
+    </Container>
   );
 }
